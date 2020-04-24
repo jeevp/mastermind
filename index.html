@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Mastermind</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/edb2f9c366.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $("button.btn_help").click(function(){
+      $("div.help_panel").slideToggle();
+    });
+    $("button.btn_help_close").click(function(){
+      $("div.help_panel").slideToggle();
+    });
+  });
+  </script>
+</head>
+<body>
+
+  <div id="app">
+    <div class="help_panel">
+      <p>
+        The goal of Mastermind is to guess a randomly-generated secret code consisting of 4
+        colored blocks. Each guess results in feedback narrowing down the possibilities of the
+        code.
+      </p>
+      <ul class="legend">
+        <li class="legend_title">There are two types of code pegs:</li>
+        <span><li class="key_peg white_peg"></li><span>Correct color, wrong position</span></span>
+        <!-- <br> -->
+        <span><li class="key_peg red_peg"></li><span>Correct color and position</span></span>
+      </ul>
+    <button class="btn_help_close"><i class="fas fa-times"></i></button>
+    </div>
+    <header>
+      <div id="info">
+        <h2>Play Mastermind</h2>
+        <h4>Click a rectangle to change its color.</h4>
+      </div>
+      <div id="btn_container">
+        <button @click="newGame = !newGame" class="btn_start" v-if="!newGame && !init"><i class="fas fa-play"></i> New game</button>
+        <button @click="newGame = false" class="btn_end" v-else><i class="fas fa-sign-out-alt"></i> End game</button>
+        <button class="btn_help"><i class="fas fa-question"></i> Help</button>
+      </div>
+    </header>
+
+    <div id="game_container">
+      <guess-container v-if="newGame"></guess-container>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script type="text/javascript" src="main.js"></script>
+
+
+</body>
+</html>
